@@ -1,0 +1,23 @@
+﻿@page "/"
+@inject IJSRuntime _jsRuntime;
+
+@code  {
+    public async Task PlaySound()
+    {
+        await _jsRuntime.InvokeAsync<string>("PlayAudio", "roar");
+    }
+
+    public async Task PauseSound()
+    {
+        await _jsRuntime.InvokeAsync<string>("PauseAudio", "roar");
+    }
+
+}
+
+<h1>Blazor Sound Demo</h1>
+
+<p>To play the sound, click the button: <button id="soundButton" @onclick="PlaySound">Click me!</button></p>
+
+<p>To make the sound stop playing, click this button: <button id="stopButton" @onclick="PauseSound">Stop sound!</button></p>
+
+<audio id="roar" src="../sounds/lion-roaring.ogg" />
